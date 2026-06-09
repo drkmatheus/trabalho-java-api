@@ -11,8 +11,11 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private BigDecimal preco;
+    @Column(nullable = false)
     private Boolean estoque;
 
     public Produto() {

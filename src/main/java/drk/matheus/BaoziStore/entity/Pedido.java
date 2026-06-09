@@ -10,8 +10,11 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private Long clienteId;
+    @Column(nullable = false)
     private Long produtoId;
+    @Column(nullable = false)
     private Integer quantidade;
 
     public Pedido() {

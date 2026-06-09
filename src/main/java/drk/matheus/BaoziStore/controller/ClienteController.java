@@ -3,6 +3,7 @@ package drk.matheus.BaoziStore.controller;
 import drk.matheus.BaoziStore.dto.input.CreateClienteDTO;
 import drk.matheus.BaoziStore.dto.output.ClienteResponseDTO;
 import drk.matheus.BaoziStore.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteResponseDTO> create(@RequestBody CreateClienteDTO dto) {
+    public ResponseEntity<ClienteResponseDTO> create(@RequestBody @Valid CreateClienteDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 

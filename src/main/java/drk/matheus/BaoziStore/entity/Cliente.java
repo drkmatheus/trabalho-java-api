@@ -2,7 +2,7 @@ package drk.matheus.BaoziStore.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -11,13 +11,22 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
-    private LocalDate clienteDesde;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime clienteDesde;
+
+    @PrePersist
+    public void prePersist() {
+        clienteDesde = LocalDateTime.now();
+    }
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, LocalDate clienteDesde) {
+    public Cliente(Long id, String nome, LocalDateTime clienteDesde) {
         this.id = id;
         this.nome = nome;
         this.clienteDesde = clienteDesde;
@@ -39,11 +48,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public LocalDate getClienteDesde() {
+    public LocalDateTime getClienteDesde() {
         return clienteDesde;
     }
 
-    public void setClienteDesde(LocalDate clienteDesde) {
+    public void setClienteDesde(LocalDateTime clienteDesde) {
         this.clienteDesde = clienteDesde;
     }
 
