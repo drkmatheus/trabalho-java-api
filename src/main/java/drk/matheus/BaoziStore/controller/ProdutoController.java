@@ -1,0 +1,30 @@
+package drk.matheus.BaoziStore.controller;
+
+import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
+import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
+import drk.matheus.BaoziStore.service.ProdutoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/produto")
+public class ProdutoController {
+    private final ProdutoService service;
+
+    public ProdutoController(ProdutoService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public ResponseEntity<ProdutoResponseDTO> create(@RequestBody CreateProdutoDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
+    }
+
+    @GetMapping
+    public List<ProdutoResponseDTO> listAll() {
+        return service.listAll();
+    }
+}

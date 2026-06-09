@@ -1,0 +1,32 @@
+package drk.matheus.BaoziStore.service;
+
+import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
+import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
+import drk.matheus.BaoziStore.entity.Produto;
+import drk.matheus.BaoziStore.mapper.ProdutoMapper;
+import drk.matheus.BaoziStore.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ProdutoService {
+    private final ProdutoRepository repository;
+    private final ProdutoMapper mapper;
+
+    public ProdutoService(ProdutoRepository repository, ProdutoMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
+    public ProdutoResponseDTO create(CreateProdutoDTO dto) {
+        Produto p = mapper.toEntity(dto);
+        Produto salvo = repository.save(p);
+
+        return mapper.toResponse(salvo);
+    }
+
+    public List<ProdutoResponseDTO> listAll() {
+        return repository.findAll().stream().map(mapper::toResponse).toList();
+    }
+}
