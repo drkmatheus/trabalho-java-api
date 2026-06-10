@@ -3,6 +3,7 @@ package drk.matheus.BaoziStore.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +23,9 @@ public class Cliente {
     public void prePersist() {
         clienteDesde = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     public Cliente() {
     }

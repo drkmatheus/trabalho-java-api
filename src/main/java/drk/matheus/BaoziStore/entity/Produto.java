@@ -3,6 +3,7 @@ package drk.matheus.BaoziStore.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,10 @@ public class Produto {
     private BigDecimal preco;
     @Column(nullable = false)
     private Boolean estoque;
+
+    @OneToMany(mappedBy = "produto")
+    private List<Pedido> pedidos;
+
 
     public Produto() {
     }

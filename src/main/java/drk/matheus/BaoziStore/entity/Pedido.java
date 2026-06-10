@@ -10,20 +10,24 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false)
-    private Long clienteId;
-    @Column(nullable = false)
-    private Long produtoId;
+
+    @ManyToOne
+    @JoinColumn (name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn (name = "produto_id", nullable = false)
+    private Produto produto;
     @Column(nullable = false)
     private Integer quantidade;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Long clienteId, Long produtoId, Integer quantidade) {
+    public Pedido(Long id, Cliente cliente, Produto produto, Integer quantidade) {
         this.id = id;
-        this.clienteId = clienteId;
-        this.produtoId = produtoId;
+        this.cliente = cliente;
+        this.produto = produto;
         this.quantidade = quantidade;
     }
 
@@ -35,20 +39,20 @@ public class Pedido {
         this.id = id;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Long getProdutoId() {
-        return produtoId;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutoId(Long produtoId) {
-        this.produtoId = produtoId;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {
@@ -63,20 +67,20 @@ public class Pedido {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id) && Objects.equals(clienteId, pedido.clienteId) && Objects.equals(produtoId, pedido.produtoId) && Objects.equals(quantidade, pedido.quantidade);
+        return Objects.equals(id, pedido.id) && Objects.equals(cliente, pedido.cliente) && Objects.equals(produto, pedido.produto) && Objects.equals(quantidade, pedido.quantidade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clienteId, produtoId, quantidade);
+        return Objects.hash(id, cliente, produto, quantidade);
     }
 
     @Override
     public String toString() {
         return "Pedido{" +
                 "id=" + id +
-                ", clienteId=" + clienteId +
-                ", produtoId=" + produtoId +
+                ", cliente=" + cliente +
+                ", produto=" + produto +
                 ", quantidade=" + quantidade +
                 '}';
     }
