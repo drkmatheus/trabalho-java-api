@@ -1,8 +1,10 @@
 package drk.matheus.BaoziStore.service;
 
 import drk.matheus.BaoziStore.dto.input.CreatePedidoDTO;
+import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
 import drk.matheus.BaoziStore.dto.output.ClienteResponseDTO;
 import drk.matheus.BaoziStore.dto.output.PedidoResponseDTO;
+import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
 import drk.matheus.BaoziStore.entity.Cliente;
 import drk.matheus.BaoziStore.entity.Pedido;
 import drk.matheus.BaoziStore.entity.Produto;
@@ -53,5 +55,20 @@ public class PedidoService {
         }
 
         repository.deleteById(id);
+    }
+
+    public PedidoResponseDTO updateById(Long id, CreatePedidoDTO dto) {
+
+        var pedidoEncontrado = repository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
+        Cliente cliente = clienteRepository.findById(dto.clienteId()).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        Produto produto = produtoRepository.findById(dto.produtoId()).orElseThrow((() -> new RuntimeException("Produto não encontrado")));
+
+        pedidoEncontrado.setCliente(cliente);
+        pedidoEncontrado.setProduto(produto);
+        pedidoEncontrado.setQuantidade(dto.quantidade());
+
+        var salvo = repository.save(pedidoEncontrado);
+        return mapper.toResponse(salvo);
     }
 }

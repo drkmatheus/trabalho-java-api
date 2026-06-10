@@ -38,4 +38,9 @@ public class ProdutoController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> updateById( @PathVariable Long id, @RequestBody @Valid CreateProdutoDTO dto) {
+        return ResponseEntity.ok().body(service.updateById(id, dto));
+    }
 }
