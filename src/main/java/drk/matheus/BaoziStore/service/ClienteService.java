@@ -1,15 +1,14 @@
 package drk.matheus.BaoziStore.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import drk.matheus.BaoziStore.dto.input.CreateClienteDTO;
-import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
 import drk.matheus.BaoziStore.dto.output.ClienteResponseDTO;
-import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
 import drk.matheus.BaoziStore.entity.Cliente;
 import drk.matheus.BaoziStore.mapper.ClienteMapper;
 import drk.matheus.BaoziStore.repository.ClienteRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ClienteService {

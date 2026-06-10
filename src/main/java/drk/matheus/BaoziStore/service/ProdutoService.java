@@ -1,7 +1,6 @@
 package drk.matheus.BaoziStore.service;
 
 import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
-import drk.matheus.BaoziStore.dto.output.PedidoResponseDTO;
 import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
 import drk.matheus.BaoziStore.entity.Produto;
 import drk.matheus.BaoziStore.mapper.ProdutoMapper;

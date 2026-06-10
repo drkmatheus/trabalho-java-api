@@ -1,5 +1,6 @@
 package drk.matheus.BaoziStore.dto.input;
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ public record CreateProdutoDTO(
         String nome,
 
         @NotNull(message = "Preço é obrigatório")
-        @Min(value = 1, message = "Preço deve ser maior do que 0")
+        @DecimalMin("0.01")
         BigDecimal preco,
 
         @NotNull(message = "A disponibilidade deve ser informada")
