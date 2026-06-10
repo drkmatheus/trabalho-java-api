@@ -28,4 +28,7 @@ public class ClienteController {
     public List<ClienteResponseDTO> listAll() {
         return service.listAll();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> listById(@PathVariable Long id) {return ResponseEntity.ok(service.listById(id));}
 }

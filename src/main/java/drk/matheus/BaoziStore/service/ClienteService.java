@@ -29,4 +29,9 @@ public class ClienteService {
     public List<ClienteResponseDTO> listAll() {
         return repository.findAll().stream().map(mapper::toResponse).toList();
     }
+
+    public ClienteResponseDTO listById(Long id) {
+        var clienteEncontrado = repository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        return mapper.toResponse(clienteEncontrado);
+    }
 }

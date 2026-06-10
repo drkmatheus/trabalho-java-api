@@ -1,6 +1,7 @@
 package drk.matheus.BaoziStore.controller;
 
 import drk.matheus.BaoziStore.dto.input.CreateProdutoDTO;
+import drk.matheus.BaoziStore.dto.output.ClienteResponseDTO;
 import drk.matheus.BaoziStore.dto.output.ProdutoResponseDTO;
 import drk.matheus.BaoziStore.service.ProdutoService;
 import jakarta.validation.Valid;
@@ -28,4 +29,7 @@ public class ProdutoController {
     public List<ProdutoResponseDTO> listAll() {
         return service.listAll();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> listById(@PathVariable Long id) {return ResponseEntity.ok(service.listById(id));}
 }

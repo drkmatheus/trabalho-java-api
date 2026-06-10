@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, String>> handleNotFoundError(RuntimeException ex) {
         Map<String, String> errors = new HashMap<>();
-        errors.put("Erro:", ex.getMessage());
+        errors.put("Erro", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 }
