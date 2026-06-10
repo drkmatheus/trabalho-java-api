@@ -46,4 +46,12 @@ public class PedidoService {
         var pedidoEncontrado = repository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
         return mapper.toResponse(pedidoEncontrado);
     }
+
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Pedido não encontrado");
+        }
+
+        repository.deleteById(id);
+    }
 }

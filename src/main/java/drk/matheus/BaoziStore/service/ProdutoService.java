@@ -35,4 +35,12 @@ public class ProdutoService {
         var produtoEncontrado = repository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
         return mapper.toResponse(produtoEncontrado);
     }
+
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Produto não encontrado");
+        }
+
+       repository.deleteById(id);
+    }
 }

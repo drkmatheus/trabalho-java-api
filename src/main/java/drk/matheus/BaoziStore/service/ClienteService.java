@@ -34,4 +34,12 @@ public class ClienteService {
         var clienteEncontrado = repository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
         return mapper.toResponse(clienteEncontrado);
     }
+
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Cliente não encontrado");
+        }
+
+        repository.deleteById(id);
+    }
 }

@@ -1,7 +1,6 @@
 package drk.matheus.BaoziStore.controller;
 
 import drk.matheus.BaoziStore.dto.input.CreatePedidoDTO;
-import drk.matheus.BaoziStore.dto.output.ClienteResponseDTO;
 import drk.matheus.BaoziStore.dto.output.PedidoResponseDTO;
 import drk.matheus.BaoziStore.service.PedidoService;
 import jakarta.validation.Valid;
@@ -32,4 +31,11 @@ public class PedidoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PedidoResponseDTO> listById(@PathVariable Long id) {return ResponseEntity.ok(service.listById(id));}
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
+
